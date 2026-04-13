@@ -3,7 +3,7 @@
 #include <ctime>
 using namespace std;
 
-enum class MsgType {LOGIN, REGISTER, STATUS, CHAT, ERROR};
+enum class MsgType {LOGIN, REGISTER, STATUS, CHAT, ERR};
 
 struct Msg {
     MsgType type;
