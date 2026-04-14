@@ -1,52 +1,67 @@
 #include "UserRepo.h"
-#include <sqlite3.h>
 
-UserRepo::UserRepo(Database& db) : database(db) {}
-
-bool UserRepo::createUser(const std::string& username, const std::string& password) {
-    if (userExists(username)) return false;
-
-    const char* sql = "INSERT INTO users (username, password) VALUES (?, ?);";
-    sqlite3_stmt* stmt;
-
-    sqlite3_prepare_v2(database.getConnection(), sql, -1, &stmt, nullptr);
-
-    sqlite3_bind_text(stmt, 1, username.c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 2, password.c_str(), -1, SQLITE_STATIC);
-
-    bool success = (sqlite3_step(stmt) == SQLITE_DONE);
-
-    sqlite3_finalize(stmt);
-    return success;
+#include <fstream>
+#include <sstream>
+#include "User.h"
+using namespace std;
+UserRepo::UserRepo(string filename) {
+    this->filename = filename;
 }
+vector<User> UserRepo::loadUsers() {
+    vector<User> users;
 
-bool UserRepo::validateUser(const std::string& username, const std::string& password) {
-    const char* sql = "SELECT password FROM users WHERE username = ?;";
-    sqlite3_stmt* stmt;
+    ifstream file(filename);
+    string line;
+    getline(file, line);
 
-    sqlite3_prepare_v2(database.getConnection(), sql, -1, &stmt, nullptr);
-    sqlite3_bind_text(stmt, 1, username.c_str(), -1, SQLITE_STATIC);
+    while (getline(file, line)) {
+        string username, email, password;
+        stringstream ss(line);
 
-    bool valid = false;
+        getline(ss, username, ',');
+        getline(ss, email, ',');
+        getline(ss, password, ',');
 
-    if (sqlite3_step(stmt) == SQLITE_ROW) {
-        std::string storedPassword = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
-        valid = (storedPassword == password);
+        User u;
+        u.username = username;
+        u.email = email;
+        u.password = password;
+
+        users.push_back(u);
     }
 
-    sqlite3_finalize(stmt);
-    return valid;
+    file.close();
+    return users;
 }
+vector<User> UserRepo::getAllUsers() {
+    return loadUsers();
+}
+bool UserRepo::validateUser(string username, string password) {
+    vector<User> users = loadUsers();
 
-bool UserRepo::userExists(const std::string& username) {
-    const char* sql = "SELECT 1 FROM users WHERE username = ?;";
-    sqlite3_stmt* stmt;
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i].username == username &&
+            users[i].password == password) {
+            return true;
+        }
+    }
+    return false;
+}
+bool UserRepo::createUser(string username, string email, string password) {
+    vector<User> users = loadUsers();
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i].username == username) {
+            return false;
+        }
+    }
 
-    sqlite3_prepare_v2(database.getConnection(), sql, -1, &stmt, nullptr);
-    sqlite3_bind_text(stmt, 1, username.c_str(), -1, SQLITE_STATIC);
-
-    bool exists = (sqlite3_step(stmt) == SQLITE_ROW);
-
-    sqlite3_finalize(stmt);
-    return exists;
+    saveUser({username, email, password});
+    return true;
+}
+void UserRepo::saveUser(User user) {
+    ofstream file(filename, ios::app);
+    file << user.username << ","
+         << user.email << ","
+         << user.password << "\n";
+    file.close();
 }

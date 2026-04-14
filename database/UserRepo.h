@@ -1,15 +1,17 @@
 #pragma once
-#include "Database.h"
+#include <vector>
 #include <string>
+#include "User.h"
 
+using namespace std;
 class UserRepo {
 public:
-    UserRepo(Database& db);
-
-    bool createUser(const std::string& username, const std::string& password);
-    bool validateUser(const std::string& username, const std::string& password);
-    bool userExists(const std::string& username);
-
+    UserRepo(string filename);
+    vector<User> getAllUsers();
+    bool validateUser(string username, string password);
+    bool createUser(string username, string email, string password);
 private:
-    Database& database;
+    string filename;
+    vector<User> loadUsers();
+    void saveUser(User user);
 };

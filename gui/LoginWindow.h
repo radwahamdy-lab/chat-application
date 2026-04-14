@@ -1,25 +1,37 @@
-#pragma once
+#ifndef LOGINWINDOW_H
+#define LOGINWINDOW_H
+
 #include <QWidget>
+#include <stdexcept>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class LoginWindow; }
+class QLineEdit;
+class QPushButton;
 QT_END_NAMESPACE
 
-class LoginWindow : public QWidget {
+class LoginWindow : public QWidget
+{
     Q_OBJECT
 
 public:
     explicit LoginWindow(QWidget *parent = nullptr);
-    ~LoginWindow();
-
-signals:
-    void loginRequested(const QString& username, const QString& password);
-    void openRegister();
 
 private slots:
-    void on_loginButton_clicked();
-    void on_registerButton_clicked();
+    void onLoginClicked();
 
 private:
-    Ui::LoginWindow *ui;
+    bool isValidEmail(const QString &email);
+
+    // Simulated DB functions (will throw exceptions)
+    void checkEmailExists(const QString &email);
+    void checkCredentials(const QString &username,
+                          const QString &email,
+                          const QString &password);
+
+    QLineEdit *usernameEdit;
+    QLineEdit *emailEdit;
+    QLineEdit *passwordEdit;
+    QPushButton *loginButton;
 };
+
+#endif 
