@@ -148,3 +148,5 @@ ChatScreen::ChatScreen(QStackedWidget *parent, ClientSession* cli) : QWidget(par
     }, Qt::QueuedConnection);
 
 }
+
+

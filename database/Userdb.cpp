@@ -83,3 +83,4 @@ vector<string> Userdb::getMsgsForChat(string sender, string receiver){
 vector<User> Userdb::getUsers(){
     return users;
 }
+

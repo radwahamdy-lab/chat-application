@@ -1,0 +1,2 @@
+/usr/bin/ar qc libnlohmann.a CMakeFiles/nlohmann.dir/nlohmann_autogen/mocs_compilation.cpp.o
+/usr/bin/ranlib libnlohmann.a
