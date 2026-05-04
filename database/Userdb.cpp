@@ -34,6 +34,14 @@ User Userdb::creatUser(string usrname, string email, string password){
     return usr;
 }
 
+bool Userdb::checkUserExists(string usrname){
+    for(int i=0; i<users.size(); i++){
+        if(users[i].usrname == usrname)
+            return true;
+    }
+    return false;
+}
+
 bool Userdb::addUser(const User& usr){
     users.push_back(usr);
     filestream << usr.usrname << "," << usr.email << "," << usr.password << endl;

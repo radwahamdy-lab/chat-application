@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 
     QMainWindow w;
     w.setWindowTitle("Chat Application");
-    w.resize(500, 400);
+    w.resize(650, 400);
 
     QWidget *centralWidget = new QWidget(&w);
     QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);

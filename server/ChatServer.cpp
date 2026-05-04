@@ -160,9 +160,14 @@ void ChatServer::handleSignUp(Msg msg, tcp::socket* socket){
     user.password = password;
 
     User usr = db.creatUser(usrname, email, password);
-    bool status = db.addUser(usr);
-    users.clear();
-    users = db.getUsers();
+    bool status;
+    if(db.checkUserExists(usr.usrname))
+        status = false;
+    else{
+        status = db.addUser(usr);
+        users.clear();
+        users = db.getUsers();
+    }
 
     Msg signUpReply;
     signUpReply.type = MsgType::REGISTER;

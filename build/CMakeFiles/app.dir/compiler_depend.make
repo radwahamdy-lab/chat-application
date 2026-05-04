@@ -3624,6 +3624,7 @@ CMakeFiles/app.dir/gui/ChatScreen.cpp.o: /home/drrad/chat-application/gui/ChatSc
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qglobalstatic.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qhashfunctions.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevicebase.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qitemselectionmodel.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qiterable.h \
@@ -3694,6 +3695,7 @@ CMakeFiles/app.dir/gui/ChatScreen.cpp.o: /home/drrad/chat-application/gui/ChatSc
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpaintdevice.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpalette.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qpicture.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpixelformat.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpixmap.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qpolygon.h \
@@ -3710,6 +3712,7 @@ CMakeFiles/app.dir/gui/ChatScreen.cpp.o: /home/drrad/chat-application/gui/ChatSc
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qtransform.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qwindowdefs.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLabel \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLineEdit \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QListWidget \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMessageBox \
@@ -3728,6 +3731,7 @@ CMakeFiles/app.dir/gui/ChatScreen.cpp.o: /home/drrad/chat-application/gui/ChatSc
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgridlayout.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlabel.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayout.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayoutitem.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlineedit.h \
@@ -11837,13 +11841,7 @@ CMakeFiles/app.dir/server/ClientSession.cpp.o: /home/drrad/chat-application/serv
 
 /home/drrad/chat-application/gui/SignupScreen.h:
 
-/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlabel.h:
-
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout:
-
-/usr/include/x86_64-linux-gnu/qt6/QtGui/qpicture.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h:
 
 /home/drrad/chat-application/gui/LoginScreen.h:
 
@@ -11866,6 +11864,8 @@ CMakeFiles/app.dir/server/ClientSession.cpp.o: /home/drrad/chat-application/serv
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlineedit.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayout.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlabel.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h:
 
@@ -11907,6 +11907,8 @@ CMakeFiles/app.dir/server/ClientSession.cpp.o: /home/drrad/chat-application/serv
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qpixelformat.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtGui/qpicture.h:
+
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qpen.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qkeysequence.h:
@@ -11938,6 +11940,8 @@ CMakeFiles/app.dir/server/ClientSession.cpp.o: /home/drrad/chat-application/serv
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qline.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h:
 

@@ -20,6 +20,7 @@ class Userdb {
         vector<string> getMsgsForChat(string, string);
         void handleNewMsg(Msg msg);
         vector<User> getUsers();
+        bool checkUserExists(string);
     private:
         ofstream filestream;
         vector<User> users;

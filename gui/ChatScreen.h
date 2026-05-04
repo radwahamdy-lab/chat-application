@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTabWidget>
+#include <QLabel>
 #include <QVBoxLayout>
 #include <QStackedWidget>
 
@@ -31,5 +32,10 @@ class ChatScreen : public QWidget {
         QWidget *logoutPage;
         QVBoxLayout *logoutLayout;
         QPushButton *logoutBtn;
+        QPushButton *addGrpBtn;
+        QVBoxLayout *leftLayout;
+        QWidget *leftwidget;
+        QLabel *membersLabel;
         string currentChat;
+        bool groupMode = false;
 };

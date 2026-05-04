@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QVBoxLayout>
 #include <QStackedWidget>
+#include <QLabel>
 #include <QString>
 #include "../server/ClientSession.h"
 #include "../database/User.h"
@@ -24,7 +25,7 @@ ChatScreen::ChatScreen(QStackedWidget *parent, ClientSession* cli) : QWidget(par
     // Chats Tab setup
     chatsPage = new QWidget();
     chatsLayout = new QHBoxLayout(chatsPage);
-    usersList = new QListWidget(chatsPage);
+    usersList = new QListWidget();
 
     chattingPart = new QWidget();
     chattingPartLayout = new QVBoxLayout(chattingPart);
@@ -56,9 +57,11 @@ ChatScreen::ChatScreen(QStackedWidget *parent, ClientSession* cli) : QWidget(par
 
     QObject::connect(logoutBtn, &QPushButton::clicked, this, [this, parent](){
         client->disconnect();
-        parent->setCurrentIndex(0);
+        chat->clear();
         tabs->setCurrentIndex(0);
+        parent->setCurrentIndex(0);
     }, Qt::QueuedConnection);
+
     
     QObject::connect(parent, &QStackedWidget::currentChanged, this, [this](int index){
         if(index == 3)
@@ -88,12 +91,18 @@ ChatScreen::ChatScreen(QStackedWidget *parent, ClientSession* cli) : QWidget(par
     }, Qt::QueuedConnection);
 
     QObject::connect(usersList, &QListWidget::itemClicked, this, [this](QListWidgetItem* item){
-        msgInput->clear();
-        stringstream ss(item->text().toStdString());
-        string otherUser;
-        ss >> otherUser;
-        client->getMsgsForChat(client->getUsername(), otherUser);
-        currentChat = otherUser;
+        if(!groupMode){
+            msgInput->clear();
+            stringstream ss(item->text().toStdString());
+            string otherUser;
+            ss >> otherUser;
+            client->getMsgsForChat(client->getUsername(), otherUser);
+            currentChat = otherUser;
+        } else {
+            string members = membersLabel->text().toStdString();
+            members += item->text().toStdString();
+            membersLabel->setText(QString::fromStdString(members));
+        }
     }, Qt::QueuedConnection);
     
 
