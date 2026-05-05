@@ -60,7 +60,8 @@ void ChatServer::handleLogin(Msg msg, tcp::socket* socket){
     if(status){
         login_request_reply.content = "login successful";
         activeUsers.push_back(activeUser);
-        
+        activeUsersSockets[usrname] = socket;
+
         for(int i=0; i<activeUsers.size(); i++) cout << activeUsers[i].usrname << ",";
         sendMsgToOne(login_request_reply, socket);
 
@@ -85,14 +86,11 @@ void ChatServer::sendMsgToAll(Msg msg){
 
 void ChatServer::sendMsgToOne(Msg msg, tcp::socket* socket){
     bool active = false;
-    tcp::socket* rec_socket;
 
-    for(int i=0; i<activeUsers.size() && !active; i++){
-        if(activeUsers[i].usrname == msg.receiver){
-            rec_socket = client_sockets[i];
-            sendMsg(msg, rec_socket);
-            active = true;
-        }
+    map<string, tcp::socket*>::iterator it = activeUsersSockets.find(msg.receiver);
+    if(it != activeUsersSockets.end()){
+        sendMsg(msg, it->second);
+        active = true;
     }
     if (!active) {
         bool found = false;
@@ -184,11 +182,9 @@ void ChatServer::handleSignUp(Msg msg, tcp::socket* socket){
 }
 
 void ChatServer::handleLogout(Msg msg, tcp::socket* socket){
-    int index = -1;
-    for(int i=0; i<activeUsers.size() && index==-1; i++)
-        if(activeUsers[i].usrname == msg.sender)
-            index = i;
-    if(index != -1){
+    
+    map<string, tcp::socket*>::iterator it = activeUsersSockets.find(msg.sender);
+    if(it != activeUsersSockets.end()){
         Msg status_update;
         status_update.type = MsgType::STATUS;
         status_update.sender = msg.sender;
@@ -196,8 +192,11 @@ void ChatServer::handleLogout(Msg msg, tcp::socket* socket){
         status_update.content = "offline";
 
         sendMsgToAll(status_update);
-        activeUsers.erase(activeUsers.begin() + index);
-        client_sockets.erase(client_sockets.begin() + index);
+        activeUsersSockets.erase(it);
+        activeUsers.erase(
+            remove_if(activeUsers.begin(), activeUsers.end(), [&](const User& u){ return u.usrname == msg.sender; }),
+            activeUsers.end()
+        );
     } else {
         cout << "user is already not found" << endl;
     }

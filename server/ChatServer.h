@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 using namespace std;
 
 #include <boost/asio.hpp>
@@ -35,5 +36,6 @@ class ChatServer {
         vector<User> users;
         vector<User> activeUsers;
         vector<tcp::socket*> client_sockets;
+        map<string, tcp::socket*> activeUsersSockets;
 
 };
