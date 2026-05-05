@@ -205,7 +205,7 @@ void ChatServer::handleLogout(Msg msg, tcp::socket* socket){
 bool ChatServer::login(string usrname, string email, string password){
     bool status1 = db.checkUser(usrname, email, password);
     bool status2 = true;
-    if(activeUsers.find(usrname) != activeUsers.end())
+    if(find_if(activeUsers.begin(), activeUsers.end(), [usrname](User user){return user.usrname == usrname;}) != activeUsers.end())
         status2 = false;
     return status1 && status2;
 }
