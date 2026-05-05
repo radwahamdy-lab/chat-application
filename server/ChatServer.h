@@ -21,9 +21,10 @@ class ChatServer {
         void getMsg(tcp::socket*);
         void sendMsg(Msg, tcp::socket*);
         void handleLogin(Msg, tcp::socket*);
-        void handleLogout(Msg);
+        void handleLogout(Msg, tcp::socket*);
         void handleClient(Msg, tcp::socket*);
-        void handleMsg(Msg, tcp::socket*);
+        void sendMsgToAll(Msg);
+        void sendMsgToOne(Msg, tcp::socket*);
         void sendUsers(Msg, tcp::socket*);
         void sendChatMsgs(tcp::socket*, string, string);
 

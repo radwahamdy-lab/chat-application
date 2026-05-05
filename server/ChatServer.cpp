@@ -61,14 +61,14 @@ void ChatServer::handleLogin(Msg msg, tcp::socket* socket){
         login_request_reply.content = "login successful";
         activeUsers.push_back(activeUser);
         for(int i=0; i<activeUsers.size(); i++) cout << activeUsers[i].usrname << ",";
-        handleMsg(login_request_reply, socket);
+        sendMsgToOne(login_request_reply, socket);
 
         Msg status_update;
         status_update.type = MsgType::STATUS;
         status_update.sender = usrname;
         status_update.receiver = "all";
         status_update.content = "online";
-        handleMsg(status_update, socket);
+        sendMsgToAll(status_update);
     } else {
         login_request_reply.content = "login unsuccessful";
         sendMsg(login_request_reply, socket);
@@ -76,42 +76,42 @@ void ChatServer::handleLogin(Msg msg, tcp::socket* socket){
 
 }
 
-void ChatServer::handleMsg(Msg msg, tcp::socket* socket) {
+void ChatServer::sendMsgToAll(Msg msg){
+    for(int i=0; i<client_sockets.size(); i++){
+        sendMsg(msg, client_sockets[i]);
+    } 
+}
+
+void ChatServer::sendMsgToOne(Msg msg, tcp::socket* socket){
+    bool active = false;
     tcp::socket* rec_socket;
-    if(msg.receiver == "all"){
-        for(int i=0; i<client_sockets.size(); i++){
-            if(client_sockets[i] != socket)
-                sendMsg(msg, client_sockets[i]);
-        } 
-    } else {
-        bool active = false;
-        for(int i=0; i<activeUsers.size() && !active; i++){
-            if(activeUsers[i].usrname == msg.receiver){
-                rec_socket = client_sockets[i];
-                sendMsg(msg, rec_socket);
-                active = true;
-            }
-        }
-        cout << "active: " << active << endl;
-        if (!active) {
-            bool found = false;
-            users = db.getUsers();
-            for(int i=0; i<users.size() && !found; i++){
-                if(users[i].usrname == msg.receiver)
-                    found = true;
-            }
-            if(!found){
-                Msg error;
-                error.type = MsgType::ERR;
-                error.sender = "server";
-                error.receiver = msg.sender;
-                error.content = msg.receiver + " cannot be found";
-                sendMsg(error, socket);
-            }
-            
+
+    for(int i=0; i<activeUsers.size() && !active; i++){
+        if(activeUsers[i].usrname == msg.receiver){
+            rec_socket = client_sockets[i];
+            sendMsg(msg, rec_socket);
+            active = true;
         }
     }
+    if (!active) {
+        bool found = false;
+        users = db.getUsers();
+        for(int i=0; i<users.size() && !found; i++){
+            if(users[i].usrname == msg.receiver)
+                found = true;
+        }
+        if(!found){
+            Msg error;
+            error.type = MsgType::ERR;
+            error.sender = "server";
+            error.receiver = msg.sender;
+            error.content = msg.receiver + " cannot be found";
+            sendMsg(error, socket);
+        }
+        
+    }
 }
+
 
 void ChatServer::sendMsg(Msg msg, tcp::socket* socket) {
     string msg_str = serialize(msg);
@@ -131,11 +131,11 @@ void ChatServer::getMsg(tcp::socket* socket){
             else if(msg.type == MsgType::REGISTER)
                 handleSignUp(msg, socket);
             else if(msg.type == MsgType::LOGOUT)
-                handleLogout(msg);
+                handleLogout(msg, socket);
             else if(msg.type == MsgType::STATUS)
-                handleMsg(msg, socket);
+                sendMsgToAll(msg);
             else if(msg.type == MsgType::CHAT){
-                handleMsg(msg, socket);
+                sendMsgToOne(msg, socket);
                 db.handleNewMsg(msg);
             }
             else if(msg.type == MsgType::GET_USERS){
@@ -182,12 +182,19 @@ void ChatServer::handleSignUp(Msg msg, tcp::socket* socket){
     sendMsg(signUpReply, socket);
 }
 
-void ChatServer::handleLogout(Msg msg){
+void ChatServer::handleLogout(Msg msg, tcp::socket* socket){
     int index = -1;
     for(int i=0; i<activeUsers.size() && index==-1; i++)
         if(activeUsers[i].usrname == msg.sender)
             index = i;
     if(index != -1){
+        Msg status_update;
+        status_update.type = MsgType::STATUS;
+        status_update.sender = msg.sender;
+        status_update.receiver = "all";
+        status_update.content = "offline";
+
+        sendMsgToAll(status_update);
         activeUsers.erase(activeUsers.begin() + index);
         client_sockets.erase(client_sockets.begin() + index);
     } else {

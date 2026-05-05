@@ -45,7 +45,8 @@ void ClientSession::getMsg(){
             } else if(msg.type == MsgType::CHAT){
                 emit msgReceived(msg);
             } else if(msg.type == MsgType::STATUS){
-                getAllUsers();
+                if(msg.sender != username)
+                    getAllUsers();
             } else if(msg.type == MsgType::ERR){
                 handleErrors(msg);
             }
