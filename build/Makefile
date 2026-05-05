@@ -195,6 +195,19 @@ app/fast:
 .PHONY : app/fast
 
 #=============================================================================
+# Target rules for targets named server
+
+# Build rule for target.
+server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server
+.PHONY : server
+
+# fast build rule for target.
+server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
+.PHONY : server/fast
+
+#=============================================================================
 # Target rules for targets named app_autogen_timestamp_deps
 
 # Build rule for target.
@@ -219,6 +232,32 @@ app_autogen: cmake_check_build_system
 app_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app_autogen.dir/build.make CMakeFiles/app_autogen.dir/build
 .PHONY : app_autogen/fast
+
+#=============================================================================
+# Target rules for targets named server_autogen_timestamp_deps
+
+# Build rule for target.
+server_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server_autogen_timestamp_deps
+.PHONY : server_autogen_timestamp_deps
+
+# fast build rule for target.
+server_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_autogen_timestamp_deps.dir/build.make CMakeFiles/server_autogen_timestamp_deps.dir/build
+.PHONY : server_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named server_autogen
+
+# Build rule for target.
+server_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server_autogen
+.PHONY : server_autogen
+
+# fast build rule for target.
+server_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server_autogen.dir/build.make CMakeFiles/server_autogen.dir/build
+.PHONY : server_autogen/fast
 
 #=============================================================================
 # Target rules for targets named bcrypt
@@ -276,6 +315,7 @@ common/Serializer.o: common/Serializer.cpp.o
 # target to build an object file
 common/Serializer.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/common/Serializer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/common/Serializer.cpp.o
 .PHONY : common/Serializer.cpp.o
 
 common/Serializer.i: common/Serializer.cpp.i
@@ -284,6 +324,7 @@ common/Serializer.i: common/Serializer.cpp.i
 # target to preprocess a source file
 common/Serializer.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/common/Serializer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/common/Serializer.cpp.i
 .PHONY : common/Serializer.cpp.i
 
 common/Serializer.s: common/Serializer.cpp.s
@@ -292,6 +333,7 @@ common/Serializer.s: common/Serializer.cpp.s
 # target to generate assembly for a file
 common/Serializer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/common/Serializer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/common/Serializer.cpp.s
 .PHONY : common/Serializer.cpp.s
 
 database/Userdb.o: database/Userdb.cpp.o
@@ -300,6 +342,7 @@ database/Userdb.o: database/Userdb.cpp.o
 # target to build an object file
 database/Userdb.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/database/Userdb.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/database/Userdb.cpp.o
 .PHONY : database/Userdb.cpp.o
 
 database/Userdb.i: database/Userdb.cpp.i
@@ -308,6 +351,7 @@ database/Userdb.i: database/Userdb.cpp.i
 # target to preprocess a source file
 database/Userdb.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/database/Userdb.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/database/Userdb.cpp.i
 .PHONY : database/Userdb.cpp.i
 
 database/Userdb.s: database/Userdb.cpp.s
@@ -316,6 +360,7 @@ database/Userdb.s: database/Userdb.cpp.s
 # target to generate assembly for a file
 database/Userdb.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/database/Userdb.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/database/Userdb.cpp.s
 .PHONY : database/Userdb.cpp.s
 
 gui/ChatScreen.o: gui/ChatScreen.cpp.o
@@ -438,12 +483,37 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+server.o: server.cpp.o
+.PHONY : server.o
+
+# target to build an object file
+server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.o
+.PHONY : server.cpp.o
+
+server.i: server.cpp.i
+.PHONY : server.i
+
+# target to preprocess a source file
+server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.i
+.PHONY : server.cpp.i
+
+server.s: server.cpp.s
+.PHONY : server.s
+
+# target to generate assembly for a file
+server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server.cpp.s
+.PHONY : server.cpp.s
+
 server/ChatServer.o: server/ChatServer.cpp.o
 .PHONY : server/ChatServer.o
 
 # target to build an object file
 server/ChatServer.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/server/ChatServer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/ChatServer.cpp.o
 .PHONY : server/ChatServer.cpp.o
 
 server/ChatServer.i: server/ChatServer.cpp.i
@@ -452,6 +522,7 @@ server/ChatServer.i: server/ChatServer.cpp.i
 # target to preprocess a source file
 server/ChatServer.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/server/ChatServer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/ChatServer.cpp.i
 .PHONY : server/ChatServer.cpp.i
 
 server/ChatServer.s: server/ChatServer.cpp.s
@@ -460,6 +531,7 @@ server/ChatServer.s: server/ChatServer.cpp.s
 # target to generate assembly for a file
 server/ChatServer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/server/ChatServer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/ChatServer.cpp.s
 .PHONY : server/ChatServer.cpp.s
 
 server/ClientSession.o: server/ClientSession.cpp.o
@@ -486,6 +558,30 @@ server/ClientSession.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/server/ClientSession.cpp.s
 .PHONY : server/ClientSession.cpp.s
 
+server_autogen/mocs_compilation.o: server_autogen/mocs_compilation.cpp.o
+.PHONY : server_autogen/mocs_compilation.o
+
+# target to build an object file
+server_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o
+.PHONY : server_autogen/mocs_compilation.cpp.o
+
+server_autogen/mocs_compilation.i: server_autogen/mocs_compilation.cpp.i
+.PHONY : server_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+server_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.i
+.PHONY : server_autogen/mocs_compilation.cpp.i
+
+server_autogen/mocs_compilation.s: server_autogen/mocs_compilation.cpp.s
+.PHONY : server_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+server_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.s
+.PHONY : server_autogen/mocs_compilation.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -502,9 +598,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... app_autogen"
 	@echo "... app_autogen_timestamp_deps"
+	@echo "... server_autogen"
+	@echo "... server_autogen_timestamp_deps"
 	@echo "... app"
 	@echo "... bcrypt"
 	@echo "... bcrypt_test"
+	@echo "... server"
 	@echo "... app_autogen/mocs_compilation.o"
 	@echo "... app_autogen/mocs_compilation.i"
 	@echo "... app_autogen/mocs_compilation.s"
@@ -529,12 +628,18 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... server.o"
+	@echo "... server.i"
+	@echo "... server.s"
 	@echo "... server/ChatServer.o"
 	@echo "... server/ChatServer.i"
 	@echo "... server/ChatServer.s"
 	@echo "... server/ClientSession.o"
 	@echo "... server/ClientSession.i"
 	@echo "... server/ClientSession.s"
+	@echo "... server_autogen/mocs_compilation.o"
+	@echo "... server_autogen/mocs_compilation.i"
+	@echo "... server_autogen/mocs_compilation.s"
 .PHONY : help
 
 

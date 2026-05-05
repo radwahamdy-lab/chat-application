@@ -1474,11 +1474,4 @@ CMakeFiles/app.dir/main.cpp.o: /home/drrad/chat-application/main.cpp \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabbar.h \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QTabWidget \
- /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabwidget.h \
- /home/drrad/chat-application/server/ChatServer.h \
- /home/drrad/chat-application/server/../database/Userdb.h \
- /usr/include/c++/13/fstream \
- /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
- /usr/include/c++/13/bits/fstream.tcc \
- /home/drrad/chat-application/server/../database/User.h
+ /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabwidget.h

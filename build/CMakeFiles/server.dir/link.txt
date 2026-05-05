@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/server.dir/server_autogen/mocs_compilation.cpp.o CMakeFiles/server.dir/server.cpp.o CMakeFiles/server.dir/server/ChatServer.cpp.o CMakeFiles/server.dir/database/Userdb.cpp.o CMakeFiles/server.dir/common/Serializer.cpp.o -o server  external/libbcrypt/libbcrypt.a 

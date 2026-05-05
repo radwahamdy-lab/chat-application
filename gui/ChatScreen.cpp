@@ -80,9 +80,10 @@ ChatScreen::ChatScreen(QStackedWidget *parent, ClientSession* cli) : QWidget(par
         while(getline(as, user, ',')){
             if(user != client->getUsername()){
                 string item;
-                size_t index = activeUsers.find(user);
-                if(index != std::string::npos && activeUsers[index-1] == ',' && activeUsers[index+user.length()] == ',')
+                int index = activeUsers.find(user);
+                if(index != std::string::npos && (activeUsers[index-1] == ',' || index-1 < 0) && activeUsers[index+user.length()] == ','){
                     item = user + " (online)";
+                }
                 else
                     item = user + " (offline)";
                 usersList->addItem(QString::fromStdString(item));

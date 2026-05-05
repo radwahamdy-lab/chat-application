@@ -1,2 +1,4 @@
 rads7,radwahamdy,$2a$12$KVwmX.irsmq.dNXBJf/WzeLcbaPbcJpziN1zANxWmkg8MyEdJlrB6
 newuser,emailnew23,$2a$12$RMQTgorjdowmGB0R./zwAOgyQUiiGne0EKMeAzr7NDiV5SizFjV32
+doctor,doctor@email.com,$2a$12$3sQQ5Jg9LK5mwx0Gmk/XjeqsC46Jj1B6Z0.HtWISLEG0hLQb3EesG
+sama_a,sama@aucegypt.edu,$2a$12$/9ns3TDrzGX0hskZfrNuZO09Z6UXqwsDUE2UTEmlSGryj/XElpBkm

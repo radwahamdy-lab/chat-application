@@ -1,4 +1,5 @@
 /home/drrad/chat-application/build/CMakeFiles/app.dir
+/home/drrad/chat-application/build/CMakeFiles/server.dir
 /home/drrad/chat-application/build/CMakeFiles/package.dir
 /home/drrad/chat-application/build/CMakeFiles/package_source.dir
 /home/drrad/chat-application/build/CMakeFiles/edit_cache.dir
@@ -9,6 +10,8 @@
 /home/drrad/chat-application/build/CMakeFiles/install/strip.dir
 /home/drrad/chat-application/build/CMakeFiles/app_autogen_timestamp_deps.dir
 /home/drrad/chat-application/build/CMakeFiles/app_autogen.dir
+/home/drrad/chat-application/build/CMakeFiles/server_autogen_timestamp_deps.dir
+/home/drrad/chat-application/build/CMakeFiles/server_autogen.dir
 /home/drrad/chat-application/build/external/libbcrypt/CMakeFiles/bcrypt.dir
 /home/drrad/chat-application/build/external/libbcrypt/CMakeFiles/bcrypt_test.dir
 /home/drrad/chat-application/build/external/libbcrypt/CMakeFiles/package.dir

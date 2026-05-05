@@ -31,3 +31,17 @@ add_executable(app
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 target_link_libraries(app PRIVATE Qt6::Widgets bcrypt)
 target_include_directories(app PRIVATE external)
+
+add_executable(server 
+server.cpp 
+server/ChatServer.h 
+server/ChatServer.cpp 
+database/User.h 
+database/Userdb.h 
+database/Userdb.cpp 
+common/Message.h
+common/Serializer.h
+common/Serializer.cpp
+)
+target_link_libraries(server PRIVATE bcrypt)
+target_include_directories(server PRIVATE external)

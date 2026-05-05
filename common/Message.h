@@ -13,6 +13,7 @@ struct Msg {
     //LOGIN/REGISTER: email + password 
     //STATUS: Online/Offline
     //CHAT: message
+    
     //ERROR: error
     time_t timestamp = time(NULL);
 };

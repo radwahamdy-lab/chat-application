@@ -1,0 +1,2 @@
+{"content":"HIII","receiver":"rads7","sender":"sama_a","timestamp":1777970025,"type":"chat"}
+{"content":"feorfi","receiver":"sama_a","sender":"rads7","timestamp":1777970121,"type":"chat"}

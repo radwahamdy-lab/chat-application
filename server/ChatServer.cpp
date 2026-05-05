@@ -24,6 +24,7 @@ void ChatServer::run(){
 void ChatServer::startAccept(){
     tcp::socket* socket = new tcp::socket(io);
     acceptor.async_accept(*socket, [this, socket](boost::system::error_code ec) {
+        cout << "Listening.." << endl;
         if(!ec){
             client_sockets.push_back(socket);
             getMsg(socket);
@@ -59,6 +60,7 @@ void ChatServer::handleLogin(Msg msg, tcp::socket* socket){
     if(status){
         login_request_reply.content = "login successful";
         activeUsers.push_back(activeUser);
+        for(int i=0; i<activeUsers.size(); i++) cout << activeUsers[i].usrname << ",";
         handleMsg(login_request_reply, socket);
 
         Msg status_update;

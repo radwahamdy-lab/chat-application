@@ -12,7 +12,6 @@ using namespace std;
 #include "gui/MainScreen.h"
 #include "gui/SignupScreen.h"
 #include "gui/ChatScreen.h"
-#include "server/ChatServer.h"
 #include "server/ClientSession.h"
 
 
@@ -20,11 +19,6 @@ int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     string filename = "database/users_db.txt"; 
     int port = 1234;
-    ChatServer* chatserver = new ChatServer(filename, port);
-
-    std::thread([chatserver]() {
-        chatserver->run();
-    }).detach();
 
     ClientSession *client = new ClientSession(port);
 

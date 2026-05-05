@@ -158,6 +158,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/app_autogen.dir/AutogenInfo.json"
+  "CMakeFiles/server_autogen.dir/AutogenInfo.json"
   ".qt/QtDeploySupport.cmake"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "CPackConfig.cmake"
@@ -168,8 +169,11 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/app.dir/DependInfo.cmake"
+  "CMakeFiles/server.dir/DependInfo.cmake"
   "CMakeFiles/app_autogen_timestamp_deps.dir/DependInfo.cmake"
   "CMakeFiles/app_autogen.dir/DependInfo.cmake"
+  "CMakeFiles/server_autogen_timestamp_deps.dir/DependInfo.cmake"
+  "CMakeFiles/server_autogen.dir/DependInfo.cmake"
   "external/libbcrypt/CMakeFiles/bcrypt.dir/DependInfo.cmake"
   "external/libbcrypt/CMakeFiles/bcrypt_test.dir/DependInfo.cmake"
   )
