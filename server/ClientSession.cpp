@@ -10,6 +10,7 @@ using boost::asio::ip::tcp;
 #include <QMetaType>
 #include <regex>
 #include <string>
+#include <sstream>
 using namespace std;
 // Send msgs from usr to server
 // Receive msgs from server to user
@@ -28,27 +29,36 @@ ClientSession::ClientSession(int port){
 void ClientSession::getMsg(){
     char* buf = new char[1024];
     socket->async_read_some(boost::asio::buffer(buf, 1024), [this, buf](boost::system::error_code ec, size_t len){
+        
         if (!ec) {
-            string msg_str(buf, len);
-            Msg msg = deserialize(msg_str);
-            cout << "msg received by client: " << msg_str << endl;
-            if(msg.type == MsgType::LOGIN){
-                checkForLogin(msg);
-                emit loginUpdateReceived(loggedIn);
-            } else if(msg.type == MsgType::REGISTER){
-                bool isSignedIn = checkForSignup(msg);
-                emit signupUpdateReceived(isSignedIn);
-            } else if(msg.type == MsgType::GET_USERS){
-                emit usersListReceived(msg);
-            } else if(msg.type == MsgType::GET_MSGS){
-                emit msgsListReceived(QString::fromStdString(msg.content), QString::fromStdString(msg.receiver));
-            } else if(msg.type == MsgType::CHAT){
-                emit msgReceived(msg);
-            } else if(msg.type == MsgType::STATUS){
-                if(msg.sender != username)
-                    getAllUsers();
-            } else if(msg.type == MsgType::ERR){
-                handleErrors(msg);
+            string msgs_str(buf, len);
+            stringstream ss(msgs_str);
+            string msg_str;
+            cout << msgs_str << endl;
+            while(getline(ss, msg_str, '}')){
+                msg_str += '}';
+                cout << "msg received by client: " << msg_str << endl;
+                if(msg_str == "") return;
+                Msg msg = deserialize(msg_str);
+                
+                if(msg.type == MsgType::LOGIN){
+                    checkForLogin(msg);
+                    emit loginUpdateReceived(loggedIn);
+                } else if(msg.type == MsgType::REGISTER){
+                    bool isSignedIn = checkForSignup(msg);
+                    emit signupUpdateReceived(isSignedIn);
+                } else if(msg.type == MsgType::GET_USERS){
+                    emit usersListReceived(msg);
+                } else if(msg.type == MsgType::GET_MSGS){
+                    emit msgsListReceived(QString::fromStdString(msg.content), QString::fromStdString(msg.receiver));
+                } else if(msg.type == MsgType::CHAT){
+                    emit msgReceived(msg);
+                } else if(msg.type == MsgType::STATUS){
+                    if(msg.sender != username)
+                        getAllUsers();
+                } else if(msg.type == MsgType::ERR){
+                    handleErrors(msg);
+                }
             }
             delete[] buf;
             getMsg();

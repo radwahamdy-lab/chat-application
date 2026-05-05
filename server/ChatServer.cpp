@@ -60,6 +60,7 @@ void ChatServer::handleLogin(Msg msg, tcp::socket* socket){
     if(status){
         login_request_reply.content = "login successful";
         activeUsers.push_back(activeUser);
+        
         for(int i=0; i<activeUsers.size(); i++) cout << activeUsers[i].usrname << ",";
         sendMsgToOne(login_request_reply, socket);
 

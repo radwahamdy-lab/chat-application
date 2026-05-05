@@ -75,11 +75,11 @@ void LoginScreen::onLoginClicked(QStackedWidget* parent){
         QMessageBox* message = new QMessageBox;
         message->setWindowTitle("Login Update");
         if (status){
-            parent->setCurrentIndex(3);
-            message->setText("Login was successful. You can now chat!");
             usernameEdit->clear();
             emailEdit->clear();
             passwordEdit->clear();
+            parent->setCurrentIndex(3);
+            message->setText("Login was successful. You can now chat!");
         } else 
             message->setText("Login failed. Try again.");
         message->exec();
