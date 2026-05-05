@@ -1,6 +1,1 @@
 {"content":"hiii","receiver":"rads7","sender":"doctor","timestamp":1777960720,"type":"chat"}
-{"content":"hello","receiver":"doctor","sender":"rads7","timestamp":1777972782,"type":"chat"}
-{"content":"kjdhfs","receiver":"rads7","sender":"doctor","timestamp":1777972787,"type":"chat"}
-{"content":"wenk","receiver":"doctor","sender":"rads7","timestamp":1777974741,"type":"chat"}
-{"content":"who are you","receiver":"rads7","sender":"doctor","timestamp":1777979008,"type":"chat"}
-{"content":"where did you go","receiver":"rads7","sender":"doctor","timestamp":1777979031,"type":"chat"}
